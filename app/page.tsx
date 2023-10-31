@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Markdown from "react-markdown";
+import Card from "./Card";
 
 export default async function Home() {
     const res = await fetch("http://127.0.0.1:1337/api/projects", {
@@ -17,7 +18,7 @@ export default async function Home() {
     console.log(projects);
     return (
         <main className="prose">
-            <h1>المشاريع</h1>
+            <Card />
             {projects.map((project: any) => (
                 <section key={project.id}>
                     <h2>{project.attributes.name}</h2>

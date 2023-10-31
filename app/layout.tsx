@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Amiri } from "next/font/google";
 import "./globals.css";
+import Link from "next/link";
 
 const amiri = Amiri({ subsets: ["arabic"], weight: ["400", "700"] });
 
@@ -16,7 +17,15 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en" dir="rtl">
-            <body className={amiri.className}>{children}</body>
+            <body className={amiri.className}>
+                <header className="flex justify-between mx-auto p-4 container">
+                    <Link className="prose" href={"/"}>
+                        <h1>مشاريع</h1>
+                    </Link>
+                    <button className="text-2xl">اقترح مشروعا</button>
+                </header>
+                {children}
+            </body>
         </html>
     );
 }
