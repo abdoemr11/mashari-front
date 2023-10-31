@@ -7,7 +7,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
     console.log(project);
 
     return (
-        <main className=" prose container  px-16 mt-16">
+        <main className=" prose-sm sm:prose container  px-16 mt-16">
             <h2>
                 {project.title}
                 <Markdown>{project.description}</Markdown>

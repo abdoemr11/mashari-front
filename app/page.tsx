@@ -9,7 +9,7 @@ export default async function Home() {
     console.log("The project are ", projects);
     if (!projects) return <div>hi</div>;
     return (
-        <main className="prose">
+        <main className=" grid sm:grid-cols-2 md:grid-cols-3 mx-auto  gap-4 mt-16 w-full">
             {projects.map((project) => (
                 <Card
                     slug={project.slug}

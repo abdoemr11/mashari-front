@@ -13,7 +13,7 @@ const Card = ({ thumbnail, title, summary, slug }: ICardProps) => {
     console.log(slug);
 
     return (
-        <div className="prose max-w-xs bg-white shadow-lg rounded-lg overflow-hidden m-4">
+        <div className="  bg-white shadow-lg rounded-lg overflow-hidden m-4">
             <Image
                 className="w-full h-56 object-cover object-center"
                 src={thumbnail && TempImage}
@@ -25,11 +25,10 @@ const Card = ({ thumbnail, title, summary, slug }: ICardProps) => {
                 <h2 className="text-xl font-semibold mb-2">{title}</h2>
                 <p className="text-gray-600 text-sm">{summary}</p>
             </div>
-            <div className="flex items-center justify-between px-6 py-4 bg-gray-200">
-                <p className="text-gray-700 font-bold">$24.99</p>
+            <div className="flex items-center justify-between px-6 py-4 bg-gray-200 ">
                 <Link
                     href={slug ? "project/" + slug : "/"}
-                    className="px-3 py-1 bg-gray-600 text-sm text-white rounded"
+                    className="px-3 py-1 bg-gray-600 text-sm text-white rounded mr-auto"
                 >
                     المرزيد عن المشروع
                 </Link>
