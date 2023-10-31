@@ -22,7 +22,9 @@ export default function RootLayout({
                     <Link className="prose" href={"/"}>
                         <h1>مشاريع</h1>
                     </Link>
-                    <button className="text-2xl">اقترح مشروعا</button>
+                    <Link className="text-2xl" href={"/suggest"}>
+                        اقترح مشروعا
+                    </Link>
                 </header>
                 {children}
             </body>
