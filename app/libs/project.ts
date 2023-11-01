@@ -54,9 +54,9 @@ export async function sumbitProject({
     await handleResponse(res);
 }
 
-export async function search(query: string): Promise<Project[]> {
+export async function searchProject(query: string): Promise<Project[]> {
     const res = await fetch(
-        `${API_BASE_URL}projects?filters[title][$containsi]=${query}`,
+        `${API_BASE_URL}projects?filters[$or][0][title][$containsi]=${query}&filters[$or][1][description][$containsi]=${query}`,
         {
             headers: gettHeaders,
         }
