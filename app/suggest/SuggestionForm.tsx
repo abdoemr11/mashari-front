@@ -1,5 +1,8 @@
 "use client";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { sumbitProject } from "../libs/project";
+import { title } from "process";
+import { useState } from "react";
 interface Inputs {
     title: string;
     description: string;
@@ -9,11 +12,19 @@ export default function SuggestionForm() {
     const {
         register,
         handleSubmit,
+        reset,
         formState: { errors },
     } = useForm<Inputs>();
     const onSubmit: SubmitHandler<Inputs> = (data) => {
-        console.log(data);
+        sumbitProject({
+            title: data.title,
+            description: data.description,
+            mail: data.mail,
+        });
+        reset();
+        setSuccess(true);
     };
+    const [isSuccess, setSuccess] = useState(false);
     console.log(errors);
     return (
         <form
@@ -49,8 +60,9 @@ export default function SuggestionForm() {
             <input
                 type="submit"
                 value={"أرسل المشروع"}
-                className="ml-auto mt-4 bg-slate-900 p-4 text-white"
+                className="ml-auto mt-4 bg-slate-900 p-4 text-white cursor-pointer"
             />
+            {isSuccess && "لقد أرسلت المشروع المقترح شكرا لك"}
         </form>
     );
 }
