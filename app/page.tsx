@@ -27,7 +27,10 @@ export default async function Home({
                 {projects.map((project) => (
                     <Card
                         slug={project.slug}
-                        thumbnail={project.thumbnail}
+                        thumbnail={
+                            project.thumbnail?.data?.attributes?.formats?.large
+                                ?.url
+                        }
                         key={project.slug}
                         title={project.title}
                         summary={project.summary}

@@ -10,13 +10,21 @@ type ICardProps = {
     slug: string;
 };
 const Card = ({ thumbnail, title, summary, slug }: ICardProps) => {
-    console.log(slug);
+    console.log("From Card", thumbnail);
 
     return (
         <div className="  bg-white shadow-lg rounded-lg overflow-hidden m-4">
             <Image
                 className="w-full h-56 object-cover object-center"
-                src={thumbnail && TempImage}
+                src={
+                    thumbnail
+                        ? `https://${
+                              new URL(
+                                  process.env.NEXT_PUBLIC_API_BASE_URL as string
+                              ).host
+                          }${thumbnail}`
+                        : TempImage
+                }
                 alt="card"
                 width={300}
                 height={300}

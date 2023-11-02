@@ -4,7 +4,6 @@ export const dynamic = "force-dynamic"; //TODO remove this line on production
 
 export default async function Page({ params }: { params: { slug: string } }) {
     const project: Project = await getOneProject(params.slug);
-    console.log(project);
 
     return (
         <main className=" prose-sm sm:prose container  px-16 mt-16">

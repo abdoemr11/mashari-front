@@ -15,21 +15,25 @@ export default function SuggestionForm() {
         reset,
         formState: { errors },
     } = useForm<Inputs>();
-    const onSubmit: SubmitHandler<Inputs> = (data) => {
-        sumbitProject({
-            title: data.title,
-            description: data.description,
-            mail: data.mail,
-        });
-        reset();
-        setSuccess(true);
+    const onSubmit: SubmitHandler<Inputs> = async (data) => {
+        try {
+            await sumbitProject({
+                title: data.title,
+                description: data.description,
+                mail: data.mail,
+            });
+            reset();
+            setSuccess(true);
+        } catch (error) {
+            console.log("There is an error");
+        }
     };
     const [isSuccess, setSuccess] = useState(false);
     console.log(errors);
     return (
         <form
             onSubmit={handleSubmit(onSubmit)}
-            className="grid text-lg gap-y-2"
+            className="grid text-lg gap-y-2 grid-cols-1"
         >
             <label htmlFor="title">عنوان المشروع</label>
             <input

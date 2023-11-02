@@ -17,7 +17,10 @@ const SearchBar = ({ submitSearch }: { submitSearch: (v: string) => void }) => {
     };
 
     return (
-        <form className="flex items-center p-16" onSubmit={handleSearch}>
+        <form
+            className="flex items-center flex-wrap justify-center p-4 sm:p-16 "
+            onSubmit={handleSearch}
+        >
             <input
                 type="text"
                 placeholder="ما المشروع الذي تبحث عنه"
@@ -26,14 +29,14 @@ const SearchBar = ({ submitSearch }: { submitSearch: (v: string) => void }) => {
                     setSearchTerm(e.target.value);
                     setError(false);
                 }}
-                className={`border border-gray-300 rounded-l py-2 px-3 focus:outline-none flex-1 ${
+                className={`border border-gray-300 rounded-l py-2 px-3 focus:outline-none  flex-1 ${
                     error && "border-[#f00]"
                 } `}
                 required
             />
             <button
                 type="submit"
-                className="bg-blue-500 text-white font-semibold rounded-l px-4 py-2  basis-[10%]"
+                className="bg-blue-500 text-white font-semibold rounded w-full sm:w-fit sm:rounded-l px-4 py-2 mt-4 sm:mt-0"
             >
                 ابحث
             </button>

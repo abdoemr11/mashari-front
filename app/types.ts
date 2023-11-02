@@ -4,5 +4,5 @@ interface Project {
     description: string;
     summary: string;
     slug: string;
-    thumbnail: string;
+    thumbnail: any;
 }
