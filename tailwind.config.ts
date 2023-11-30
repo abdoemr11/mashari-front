@@ -32,6 +32,9 @@ const config: Config = {
             boxShadow: {
                 lg: "0 10px 15px -3px rgb(var(--secondary) / .1), 0 4px 6px -4px rgb(var(--secondary) / .1)",
             },
+            fontFamily: {
+                cairo: "var(--font-cairo)",
+            },
         },
     },
     plugins: [require("@tailwindcss/typography")],
