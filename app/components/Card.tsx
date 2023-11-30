@@ -13,7 +13,7 @@ const Card = ({ thumbnail, title, summary, slug }: ICardProps) => {
     console.log("From Card", thumbnail);
 
     return (
-        <div className="  bg-white shadow-lg rounded-lg overflow-hidden m-4">
+        <div className="  shadow-lg rounded-lg overflow-hidden m-4">
             <Image
                 className="w-full h-56 object-cover object-center"
                 src={
@@ -30,15 +30,15 @@ const Card = ({ thumbnail, title, summary, slug }: ICardProps) => {
                 height={300}
             />
             <div className=" py-4 px-6">
-                <h2 className="text-xl font-semibold mb-2">{title}</h2>
-                <p className="text-gray-600 text-sm">{summary}</p>
+                <h2 className="text-2xl  mb-2 text-center">{title}</h2>
+                <p className=" text-sm">{summary}</p>
             </div>
-            <div className="flex items-center justify-between px-6 py-4 bg-gray-200 ">
+            <div className="flex items-center justify-between px-6 py-4  ">
                 <Link
-                    href={slug ? "project/" + slug : "/"}
-                    className="px-3 py-1 bg-gray-600 text-sm text-white rounded mr-auto"
+                    href={slug ? "items/" + slug : "/"}
+                    className="px-3 py-1  text-xl  rounded mr-auto font-bold"
                 >
-                    المرزيد عن المشروع
+                    عرض المزيد{" "}
                 </Link>
             </div>
         </div>

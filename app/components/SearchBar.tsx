@@ -17,29 +17,28 @@ const SearchBar = ({ submitSearch }: { submitSearch: (v: string) => void }) => {
     };
 
     return (
-        <form
-            className="flex items-center flex-wrap justify-center p-4 sm:p-16 "
-            onSubmit={handleSearch}
-        >
-            <input
-                type="text"
-                placeholder="ما المشروع الذي تبحث عنه"
-                value={searchTerm}
-                onChange={(e) => {
-                    setSearchTerm(e.target.value);
-                    setError(false);
-                }}
-                className={`border border-gray-300 rounded-l py-2 px-3 focus:outline-none  flex-1 ${
-                    error && "border-[#f00]"
-                } `}
-                required
-            />
-            <button
-                type="submit"
-                className="bg-blue-500 text-white font-semibold rounded w-full sm:w-fit sm:rounded-l px-4 py-2 mt-4 sm:mt-0"
-            >
-                ابحث
-            </button>
+        <form className=" p-4 sm:p-16 " onSubmit={handleSearch}>
+            <div className=" relative">
+                <input
+                    type="text"
+                    placeholder="ما الكتاب الذي تبحث عنه"
+                    value={searchTerm}
+                    onChange={(e) => {
+                        setSearchTerm(e.target.value);
+                        setError(false);
+                    }}
+                    className={`border border-primary rounded-3xl py-4   px-6 focus:outline-none  w-full flex-1 font-cairo ${
+                        error && "border-[#f00]"
+                    } `}
+                    required
+                />
+                <button
+                    type="submit"
+                    className=" absolute bg-primary text-secondary font-semibold rounded-3xl left-0 py-[10px] px-4 text-2xl"
+                >
+                    بحث
+                </button>
+            </div>
         </form>
     );
 };

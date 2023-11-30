@@ -23,7 +23,8 @@ export default async function Home({
     return (
         <main>
             <SearchBar submitSearch={submitSearch} />
-            <section className=" grid sm:grid-cols-2 md:grid-cols-3 mx-auto  gap-4 mt-16 w-full">
+            <h1 className=" text-4xl mt-7">كتبا مميزة</h1>
+            <section className=" grid sm:grid-cols-2 md:grid-cols-3 mx-auto  gap-4 mt-8 w-full">
                 {projects.map((project) => (
                     <Card
                         slug={project.slug}
