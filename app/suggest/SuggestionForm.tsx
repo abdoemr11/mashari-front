@@ -33,21 +33,21 @@ export default function SuggestionForm() {
     return (
         <form
             onSubmit={handleSubmit(onSubmit)}
-            className="grid text-lg gap-y-2 grid-cols-1"
+            className="grid text-lg gap-y-2 grid-cols-1 font-cairo "
         >
-            <label htmlFor="title">عنوان المشروع</label>
+            <label htmlFor="title">اسم الكتاب</label>
             <input
-                className="border py-2 px-4"
+                className="border py-2 px-4 rounded-xl border-secondary"
                 type="text"
                 placeholder="title"
                 {...register("title", { required: true })}
             />
             <label htmlFor="description" className="mt-4">
-                وصف المشروع
+                ماالذي تريد اخبارنا عنه{" "}
             </label>
 
             <textarea
-                className="w-full h-[300px] border py-2 px-4"
+                className="w-full h-[300px] border py-2 px-4 rounded-xl border-secondary"
                 {...register("description", { required: true })}
             />
             <label htmlFor="mail" className="mt-4">
@@ -55,7 +55,7 @@ export default function SuggestionForm() {
             </label>
 
             <input
-                className="border py-2 px-4"
+                className="border py-2 px-4 rounded-xl border-secondary"
                 type="email"
                 placeholder="mail"
                 {...register("mail", { required: true })}
@@ -64,7 +64,7 @@ export default function SuggestionForm() {
             <input
                 type="submit"
                 value={"أرسل المشروع"}
-                className="ml-auto mt-4 bg-slate-900 p-4 text-white cursor-pointer"
+                className="ml-auto mt-4 text-primary p-4 bg-secondary rounded-xl cursor-pointer"
             />
             {isSuccess && "لقد أرسلت المشروع المقترح شكرا لك"}
         </form>

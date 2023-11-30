@@ -3,7 +3,8 @@ import Markdown from "react-markdown";
 import Card from "./components/Card";
 import { getAllProjects, searchProject } from "./libs/project";
 import SearchBar from "./components/SearchBar";
-import { submitSearch } from "./actions";
+import Heading from "./components/Heading";
+import { submitSearch } from "@/app/actions";
 
 export const dynamic = "force-dynamic"; //TODO remove this line on production
 export default async function Home({
@@ -23,7 +24,8 @@ export default async function Home({
     return (
         <main>
             <SearchBar submitSearch={submitSearch} />
-            <h1 className=" text-4xl mt-7">كتبا مميزة</h1>
+
+            <Heading headingText="كتبا مميزة" />
             <section className=" grid sm:grid-cols-2 md:grid-cols-3 mx-auto  gap-4 mt-8 w-full">
                 {projects.map((project) => (
                     <Card
