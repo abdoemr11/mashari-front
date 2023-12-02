@@ -5,12 +5,12 @@ export default function BackButton() {
     const router = useRouter();
     return (
         <span
-            className="px-3 py-1  text-xl  rounded mr-auto block w-fit font-bold cursor-pointer bg-accent"
+            className="px-4 py-3  text-xl md:text-3xl rounded mr-auto block w-fit font-bold cursor-pointer bg-accent"
             onClick={() => {
                 router.back();
             }}
         >
-            عودة
+            العودة
         </span>
     );
 }

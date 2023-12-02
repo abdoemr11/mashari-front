@@ -3,6 +3,7 @@ import { Amiri, Cairo } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
 import Image from "next/image";
+import HoveredLink from "./components/HoveredLink";
 
 const amiri = Amiri({ subsets: ["arabic"], weight: ["400", "700"] });
 const cario = Cairo({
@@ -44,15 +45,12 @@ export default function RootLayout({
                     </Link>
                 </header>
                 <nav className="flex justify-between text-2xl sm:text-3xl md:text-4xl lg:px-12">
-                    <Link href={"/suggest"} className="">
-                        اقترح كتابا
-                    </Link>
-                    <Link href={"/categories"} className="">
-                        تصفح الأقسام
-                    </Link>
-                    <Link href={"/about"} className="">
-                        رؤيتنا
-                    </Link>
+                    <HoveredLink target="/suggest" displayText="اقترح كتابا" />
+                    <HoveredLink
+                        target="/categories"
+                        displayText="تصفح الأقسام"
+                    />
+                    <HoveredLink target="/about" displayText="رؤيتنا" />
                 </nav>
                 {children}
             </body>
