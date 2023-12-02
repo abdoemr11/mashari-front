@@ -30,7 +30,7 @@ async function authenticateAdmin() {
 export async function getAllBooks(): Promise<Book[]> {
     await authenticateAdmin();
 
-    const records = await pb.collection("books").getFullList({
+    const records = await pb.collection<Book>("books").getFullList({
         sort: "-created",
     });
     // const books: Book[] = records.filter((validateBook));
@@ -39,12 +39,13 @@ export async function getAllBooks(): Promise<Book[]> {
     return books;
 }
 
-export async function getOneProject(slug: string): Promise<Project> {
-    const res = await fetch(`${API_BASE_URL}projects/${slug}`, {
-        headers: authHeaders,
-    });
-    const rawProject = await handleResponse(res);
-    return rawProject.data.attributes;
+export async function getOneBook(slug: string): Promise<Book> {
+    await authenticateAdmin();
+    const record = await pb
+        .collection("books")
+        .getFirstListItem<Book>(`slug="${slug}"`);
+    console.log("trying to get one book", record);
+    return record;
 }
 interface SuggestedProject {
     title: string;
