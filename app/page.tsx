@@ -5,6 +5,7 @@ import { getAllBooks, searchProject } from "./libs/book";
 import SearchBar from "./components/SearchBar";
 import Heading from "./components/Heading";
 import { submitSearch } from "@/app/actions";
+import { getThumbnailUrl } from "./libs/utils";
 
 export const dynamic = "force-dynamic"; //TODO remove this line on production
 export default async function Home({
@@ -30,7 +31,7 @@ export default async function Home({
                 {books.map((book) => (
                     <Card
                         slug={book.slug}
-                        thumbnail={` ${process.env.NEXT_PUBLIC_PB_URL}/api/files/books/${book.id}/${book.thumbnail}`}
+                        thumbnail={getThumbnailUrl(book)}
                         key={book.slug}
                         title={book.title}
                         summary={book.summary}
