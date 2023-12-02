@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Markdown from "react-markdown";
 import Card from "./components/Card";
-import { getAllProjects, searchProject } from "./libs/project";
+import { getAllProjects, searchProject } from "./libs/book";
 import SearchBar from "./components/SearchBar";
 import Heading from "./components/Heading";
 import { submitSearch } from "@/app/actions";

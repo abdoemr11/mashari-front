@@ -6,3 +6,9 @@ interface Project {
     slug: string;
     thumbnail: any;
 }
+
+interface SuggestedBook {
+    title: string;
+    description: string;
+    mail: string;
+}

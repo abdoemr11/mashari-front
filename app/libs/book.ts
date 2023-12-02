@@ -1,3 +1,5 @@
+import PocketBase, { AdminAuthResponse } from "pocketbase";
+
 const API_BASE_URL = process.env.API_BASE_URL;
 
 const authHeaders = {
@@ -10,7 +12,16 @@ async function handleResponse(res: Response) {
     }
     return res.json();
 }
-
+const pb = new PocketBase("https://wraqelhasob.pockethost.io");
+let authData: AdminAuthResponse;
+async function authenticateAdmin() {
+    if (!authData) {
+        authData = await pb.admins.authWithPassword(
+            process.env.NEXT_PUBLIC_PB_AUTHMAIL as string,
+            process.env.NEXT_PUBLIC_PB_AUTHPASSWORD as string
+        );
+    }
+}
 export async function getAllProjects(): Promise<Project[]> {
     const res = await fetch(`${API_BASE_URL}projects?populate=*`, {
         headers: authHeaders,
@@ -31,25 +42,15 @@ interface SuggestedProject {
     description: string;
     mail?: string;
 }
-export async function sumbitProject({
+export async function sumbitSuggestedBook({
     title,
     description,
     mail,
-}: SuggestedProject) {
-    const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_BASE_URL}suggestions/`,
-        {
-            method: "POST", // or 'PUT'
-            body: JSON.stringify({
-                data: { title, description, suggestion_mail: mail },
-            }),
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
-            },
-        }
-    );
-    await handleResponse(res);
+}: SuggestedBook) {
+    await authenticateAdmin();
+    const record = await pb
+        .collection("suggested_books")
+        .create({ title, description, mail });
 }
 
 export async function searchProject(query: string): Promise<Project[]> {

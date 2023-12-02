@@ -1,6 +1,6 @@
 import BackButton from "@/app/components/BackButton";
 import Heading from "@/app/components/Heading";
-import { getOneProject } from "@/app/libs/project";
+import { getOneProject } from "@/app/libs/book";
 import Image from "next/image";
 import dummyImage from "@/app/assets/300.png";
 import Markdown from "react-markdown";

@@ -1,6 +1,6 @@
 "use client";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { sumbitProject } from "../libs/project";
+import { sumbitSuggestedBook } from "../libs/book";
 import { title } from "process";
 import { useState } from "react";
 interface Inputs {
@@ -17,7 +17,7 @@ export default function SuggestionForm() {
     } = useForm<Inputs>();
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
         try {
-            await sumbitProject({
+            await sumbitSuggestedBook({
                 title: data.title,
                 description: data.description,
                 mail: data.mail,
