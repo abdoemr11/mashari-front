@@ -16,15 +16,7 @@ const Card = ({ thumbnail, title, summary, slug }: ICardProps) => {
         <div className="  shadow-lg rounded-lg overflow-hidden m-4">
             <Image
                 className="w-full h-56 object-cover object-center"
-                src={
-                    thumbnail
-                        ? `https://${
-                              new URL(
-                                  process.env.NEXT_PUBLIC_API_BASE_URL as string
-                              ).host
-                          }${thumbnail}`
-                        : TempImage
-                }
+                src={thumbnail ? thumbnail : TempImage}
                 alt="card"
                 width={300}
                 height={300}

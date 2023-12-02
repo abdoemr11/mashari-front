@@ -1,4 +1,5 @@
 import PocketBase, { AdminAuthResponse } from "pocketbase";
+import { validateBook } from "./bookHelper";
 
 const API_BASE_URL = process.env.API_BASE_URL;
 
@@ -22,12 +23,20 @@ async function authenticateAdmin() {
         );
     }
 }
-export async function getAllProjects(): Promise<Project[]> {
-    const res = await fetch(`${API_BASE_URL}projects?populate=*`, {
-        headers: authHeaders,
+/**
+ * TODO deal with pagination
+ * TODO data validation
+ */
+export async function getAllBooks(): Promise<Book[]> {
+    await authenticateAdmin();
+
+    const records = await pb.collection("books").getFullList({
+        sort: "-created",
     });
-    const rawProjects = await handleResponse(res);
-    return rawProjects.data.map((rp: any) => rp.attributes);
+    // const books: Book[] = records.filter((validateBook));
+    const books: Book[] = records;
+    console.log(books);
+    return books;
 }
 
 export async function getOneProject(slug: string): Promise<Project> {

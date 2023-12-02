@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Markdown from "react-markdown";
 import Card from "./components/Card";
-import { getAllProjects, searchProject } from "./libs/book";
+import { getAllBooks, searchProject } from "./libs/book";
 import SearchBar from "./components/SearchBar";
 import Heading from "./components/Heading";
 import { submitSearch } from "@/app/actions";
@@ -13,30 +13,27 @@ export default async function Home({
     searchParams: { [key: string]: string | string[] | undefined };
 }) {
     console.log(searchParams.query);
-    let projects: Project[];
+    let books: Book[];
     if (typeof searchParams.query === "string") {
-        projects = await searchProject(searchParams.query);
+        books = await searchProject(searchParams.query);
     } else {
-        projects = await getAllProjects();
+        books = await getAllBooks();
     }
 
-    if (!projects) return <div>hi</div>;
+    if (!books) return <div>hi</div>;
     return (
         <main>
             <SearchBar submitSearch={submitSearch} />
 
             <Heading headingText="كتبا مميزة" />
             <section className=" grid sm:grid-cols-2 md:grid-cols-3 mx-auto  gap-4 mt-8 w-full">
-                {projects.map((project) => (
+                {books.map((book) => (
                     <Card
-                        slug={project.slug}
-                        thumbnail={
-                            project.thumbnail?.data?.attributes?.formats?.large
-                                ?.url
-                        }
-                        key={project.slug}
-                        title={project.title}
-                        summary={project.summary}
+                        slug={book.slug}
+                        thumbnail={` ${process.env.NEXT_PUBLIC_PB_URL}/api/files/books/${book.id}/${book.thumbnail}`}
+                        key={book.slug}
+                        title={book.title}
+                        summary={book.summary}
                     />
                 ))}
             </section>
