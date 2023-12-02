@@ -1,19 +1,10 @@
 import PocketBase, { AdminAuthResponse } from "pocketbase";
-import { validateBook } from "./bookHelper";
 
-const API_BASE_URL = process.env.API_BASE_URL;
-
-const authHeaders = {
-    Authorization: `bearer ${process.env.API_TOKEN}`,
-};
-async function handleResponse(res: Response) {
-    if (!res.ok) {
-        console.log(res.status);
-        throw new Error("Failed to fetch data" + res.body);
-    }
-    return res.json();
-}
 const pb = new PocketBase("https://wraqelhasob.pockethost.io");
+
+/**
+ * To avoid auto cancellation or unneccessary authentication attempts
+ */
 let authData: AdminAuthResponse;
 async function authenticateAdmin() {
     if (!authData) {
@@ -33,7 +24,6 @@ export async function getAllBooks(): Promise<Book[]> {
     const records = await pb.collection<Book>("books").getFullList({
         sort: "-created",
     });
-    // const books: Book[] = records.filter((validateBook));
     const books: Book[] = records;
     console.log(books);
     return books;
@@ -47,11 +37,16 @@ export async function getOneBook(slug: string): Promise<Book> {
     console.log("trying to get one book", record);
     return record;
 }
-interface SuggestedProject {
-    title: string;
-    description: string;
-    mail?: string;
+
+export async function searchBook(query: string): Promise<Book[]> {
+    await authenticateAdmin();
+    const records = await pb.collection("books").getFullList<Book>({
+        sort: "-created",
+        filter: `title ~ '${query}' || description ~ '${query}'`,
+    });
+    return records;
 }
+
 export async function sumbitSuggestedBook({
     title,
     description,
@@ -61,15 +56,4 @@ export async function sumbitSuggestedBook({
     const record = await pb
         .collection("suggested_books")
         .create({ title, description, mail });
-}
-
-export async function searchProject(query: string): Promise<Project[]> {
-    const res = await fetch(
-        `${API_BASE_URL}projects?filters[$or][0][title][$containsi]=${query}&filters[$or][1][description][$containsi]=${query}`,
-        {
-            headers: authHeaders,
-        }
-    );
-    const rawProjects = await handleResponse(res);
-    return rawProjects.data.map((rp: any) => rp.attributes);
 }

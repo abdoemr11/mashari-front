@@ -44,12 +44,9 @@ export default function RootLayout({
                         />
                     </Link>
                 </header>
-                <nav className="flex justify-between text-2xl sm:text-3xl md:text-4xl lg:px-12">
+                <nav className="flex justify-center sm:gap-4 md:gap-8 text-2xl sm:text-3xl md:text-4xl lg:px-12">
                     <HoveredLink target="/suggest" displayText="اقترح كتابا" />
-                    <HoveredLink
-                        target="/categories"
-                        displayText="تصفح الأقسام"
-                    />
+
                     <HoveredLink target="/about" displayText="رؤيتنا" />
                 </nav>
                 {children}

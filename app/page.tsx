@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Markdown from "react-markdown";
 import Card from "./components/Card";
-import { getAllBooks, searchProject } from "./libs/book";
+import { getAllBooks, searchBook } from "./libs/book";
 import SearchBar from "./components/SearchBar";
 import Heading from "./components/Heading";
 import { submitSearch } from "@/app/actions";
@@ -16,7 +16,7 @@ export default async function Home({
     console.log(searchParams.query);
     let books: Book[];
     if (typeof searchParams.query === "string") {
-        books = await searchProject(searchParams.query);
+        books = await searchBook(searchParams.query);
     } else {
         books = await getAllBooks();
     }
