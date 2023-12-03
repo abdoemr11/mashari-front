@@ -1,6 +1,8 @@
 A Collaborative Library that aim to be the wiki for computer science books writtern in Arabic.
 
 `wraq` is the term used to refer to individuals who write and publish books. 
+
+Visit [وراق الحاسوب](https://wraqelhasob.netlify.app/)
 ## Tech Stack
 - Next js 14 for server side rendering 
 - Pocketbase for all in one backend solution
