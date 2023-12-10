@@ -7,7 +7,6 @@ import Heading from "./components/Heading";
 import { submitSearch } from "@/app/actions";
 import { getThumbnailUrl } from "./libs/utils";
 
-export const dynamic = "force-dynamic"; //TODO remove this line on production
 export default async function Home({
     searchParams,
 }: {
