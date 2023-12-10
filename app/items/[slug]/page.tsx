@@ -3,10 +3,8 @@ import Heading from "@/app/components/Heading";
 import { getOneBook } from "@/app/libs/book";
 import Image from "next/image";
 import dummyImage from "@/app/assets/300.png";
-import Markdown from "react-markdown";
 import { getThumbnailUrl } from "@/app/libs/utils";
 import parse from "html-react-parser";
-export const dynamic = "force-dynamic"; //TODO remove this line on production
 
 export default async function Page({ params }: { params: { slug: string } }) {
     const book: Book = await getOneBook(params.slug);
