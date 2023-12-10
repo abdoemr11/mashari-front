@@ -1,3 +1,5 @@
+![وراق الحاسوب](app/icon.png)
+
 A Collaborative Library that aim to be the wiki for computer science books written in Arabic.
 
 `wraq` is the term used to refer to individuals who write and publish books. 
